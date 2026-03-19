@@ -512,6 +512,138 @@
 			]
 		},
 		{
+			"name": "Invitations",
+			"item": [
+				{
+					"name": "Send Invitation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"eventId\": \"paste-event-id-here\",\n  \"inviteeId\": \"paste-invitee-user-id-here\"\n}"
+						},
+						"url": {
+							"raw": "{{apiUrl}}/invitations/send",
+							"host": ["{{apiUrl}}"],
+							"path": ["invitations", "send"]
+						},
+						"description": "Requires authentication. Only event organizer can send invitations."
+					}
+				},
+				{
+					"name": "Get My Invitations (Received)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/invitations/my-invitations?page=1&limit=10",
+							"host": ["{{apiUrl}}"],
+							"path": ["invitations", "my-invitations"],
+							"query": [
+								{ "key": "page", "value": "1" },
+								{ "key": "limit", "value": "10" },
+								{ "key": "status", "value": "PENDING", "disabled": true }
+							]
+						},
+						"description": "Requires authentication. Get all invitations received by the logged-in user. Optional filter by status: PENDING, ACCEPTED, DECLINED."
+					}
+				},
+				{
+					"name": "Get Sent Invitations (Organizer)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/invitations/event/:eventId?page=1&limit=10",
+							"host": ["{{apiUrl}}"],
+							"path": ["invitations", "event", ":eventId"],
+							"query": [
+								{ "key": "page", "value": "1" },
+								{ "key": "limit", "value": "10" },
+								{ "key": "status", "value": "PENDING", "disabled": true }
+							],
+							"variable": [
+								{ "key": "eventId", "value": "" }
+							]
+						},
+						"description": "Requires authentication. Only event organizer can view sent invitations for their event."
+					}
+				},
+				{
+					"name": "Accept Invitation",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": \"ACCEPTED\"\n}"
+						},
+						"url": {
+							"raw": "{{apiUrl}}/invitations/:invitationId/respond",
+							"host": ["{{apiUrl}}"],
+							"path": ["invitations", ":invitationId", "respond"],
+							"variable": [
+								{ "key": "invitationId", "value": "" }
+							]
+						},
+						"description": "Only the invited user can accept. Free events auto-approve participant, paid events stay PENDING until payment."
+					}
+				},
+				{
+					"name": "Decline Invitation",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": \"DECLINED\"\n}"
+						},
+						"url": {
+							"raw": "{{apiUrl}}/invitations/:invitationId/respond",
+							"host": ["{{apiUrl}}"],
+							"path": ["invitations", ":invitationId", "respond"],
+							"variable": [
+								{ "key": "invitationId", "value": "" }
+							]
+						},
+						"description": "Only the invited user can decline."
+					}
+				},
+				{
+					"name": "Cancel Invitation (Organizer)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/invitations/:invitationId",
+							"host": ["{{apiUrl}}"],
+							"path": ["invitations", ":invitationId"],
+							"variable": [
+								{ "key": "invitationId", "value": "" }
+							]
+						},
+						"description": "Only event organizer can cancel. Can only cancel PENDING invitations."
+					}
+				}
+			]
+		},
+		{
 			"name": "Events",
 			"item": [
 				{
