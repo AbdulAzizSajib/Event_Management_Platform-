@@ -9,6 +9,7 @@ import authRouter from "./module/auth/auth.router";
 import userRouter from "./module/user/user.router";
 import { globalErrorHandler } from "./middleware/globalErrorHandler";
 import { notFoundMiddleware } from "./middleware/notFound";
+import { envVars } from "./config/env";
 
 const app = express();
 
@@ -19,6 +20,8 @@ app.set("views", path.resolve(process.cwd(), `src/app/templates`));
 app.use(
   cors({
     origin: [
+      envVars.FRONTEND_URL,
+      envVars.BETTER_AUTH_URL,
       "http://localhost:3000",
       "http://localhost:5000",
     ],
