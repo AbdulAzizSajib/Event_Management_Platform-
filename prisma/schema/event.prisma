@@ -9,6 +9,7 @@ model Event {
     type        EventType @default(PUBLIC)
     fee         Decimal   @default(0) @db.Decimal(10, 2) // 0 = Free
     maxAttendees Int?     // null = unlimited
+    image       String?   // Event banner/cover image URL
     isFeatured  Boolean   @default(false) // Admin selects for homepage hero
 
     categoryId String?

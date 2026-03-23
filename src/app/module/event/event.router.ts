@@ -4,6 +4,7 @@ import { checkAuth } from "../../middleware/checkAuth";
 import { validateRequest } from "../../middleware/validateRequest";
 import { EventValidation } from "./event.validation";
 import { Role } from "../../../generated/prisma/enums";
+import { multerUpload } from "../../config/multer.config";
 
 const eventRouter = Router();
 
@@ -20,6 +21,7 @@ eventRouter.get(
 eventRouter.post(
   "/",
   checkAuth(Role.USER, Role.ADMIN, Role.SUPER_ADMIN),
+  multerUpload.single("image"),
   validateRequest(EventValidation.createEventZodSchema),
   eventController.createEvent,
 );
@@ -38,6 +40,20 @@ eventRouter.delete(
   "/:id",
   checkAuth(Role.USER, Role.ADMIN, Role.SUPER_ADMIN),
   eventController.deleteEvent,
+);
+
+// Image upload/remove
+eventRouter.patch(
+  "/:id/image",
+  checkAuth(Role.USER, Role.ADMIN, Role.SUPER_ADMIN),
+  multerUpload.single("image"),
+  eventController.uploadImage,
+);
+
+eventRouter.delete(
+  "/:id/image",
+  checkAuth(Role.USER, Role.ADMIN, Role.SUPER_ADMIN),
+  eventController.removeImage,
 );
 
 // Admin only

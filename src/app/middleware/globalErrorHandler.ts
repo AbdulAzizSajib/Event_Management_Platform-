@@ -7,8 +7,7 @@ import { handleZodError } from "../errorHelpers/handleZodError";
 import z from "zod";
 import { status } from "http-status";
 import AppError from "../errorHelpers/AppError";
-// import { deleteFileFromCloudinary } from "../config/cloudinary.config";
-// import { deleteUploadedFilesFromGlobalErrorHandler } from "../utils/deleteUploadedFilesFromGlobalErrorHandler";
+import { deleteUploadedFilesFromGlobalErrorHandler } from "../utils/deleteUploadedFilesFromGlobalErrorHandler";
 import { Prisma } from "../../generated/prisma/client";
 import {
   handlePrismaClientKnownRequestError,
@@ -31,16 +30,8 @@ export const globalErrorHandler = async (
     console.error("Error from Global Error Handler:", err);
   }
 
-  // cleanup uploaded files if any error occurs during file upload or processing
-  // if (req.file) {
-  //   await deleteFileFromCloudinary(req.file.path);
-  // }
-
-  // if (req.files && Array.isArray(req.files) && req.files.length > 0) {
-  //   const imageUrls = req.files.map((file) => file.path);
-  //   await Promise.all(imageUrls.map((url) => deleteFileFromCloudinary(url)));
-  // }
-  // await deleteUploadedFilesFromGlobalErrorHandler(req);
+  // Cleanup uploaded files from Cloudinary if error occurs
+  await deleteUploadedFilesFromGlobalErrorHandler(req);
 
   // handle different types of errors and send appropriate response
 

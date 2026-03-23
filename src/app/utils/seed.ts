@@ -21,7 +21,7 @@ export const seedSuperAdmin = async () => {
         email: envVars.SUPER_ADMIN_EMAIL,
         password: envVars.SUPER_ADMIN_PASSWORD,
         name: "Super Admin",
-        role: Role.SUPER_ADMIN,
+        role: Role.ADMIN,
         needPasswordChange: false,
         rememberMe: false,
       },

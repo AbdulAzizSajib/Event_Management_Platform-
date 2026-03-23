@@ -47,6 +47,7 @@ export type EventMinAggregateOutputType = {
   type: $Enums.EventType | null
   fee: runtime.Decimal | null
   maxAttendees: number | null
+  image: string | null
   isFeatured: boolean | null
   categoryId: string | null
   organizerId: string | null
@@ -65,6 +66,7 @@ export type EventMaxAggregateOutputType = {
   type: $Enums.EventType | null
   fee: runtime.Decimal | null
   maxAttendees: number | null
+  image: string | null
   isFeatured: boolean | null
   categoryId: string | null
   organizerId: string | null
@@ -83,6 +85,7 @@ export type EventCountAggregateOutputType = {
   type: number
   fee: number
   maxAttendees: number
+  image: number
   isFeatured: number
   categoryId: number
   organizerId: number
@@ -113,6 +116,7 @@ export type EventMinAggregateInputType = {
   type?: true
   fee?: true
   maxAttendees?: true
+  image?: true
   isFeatured?: true
   categoryId?: true
   organizerId?: true
@@ -131,6 +135,7 @@ export type EventMaxAggregateInputType = {
   type?: true
   fee?: true
   maxAttendees?: true
+  image?: true
   isFeatured?: true
   categoryId?: true
   organizerId?: true
@@ -149,6 +154,7 @@ export type EventCountAggregateInputType = {
   type?: true
   fee?: true
   maxAttendees?: true
+  image?: true
   isFeatured?: true
   categoryId?: true
   organizerId?: true
@@ -254,6 +260,7 @@ export type EventGroupByOutputType = {
   type: $Enums.EventType
   fee: runtime.Decimal
   maxAttendees: number | null
+  image: string | null
   isFeatured: boolean
   categoryId: string | null
   organizerId: string
@@ -295,6 +302,7 @@ export type EventWhereInput = {
   type?: Prisma.EnumEventTypeFilter<"Event"> | $Enums.EventType
   fee?: Prisma.DecimalFilter<"Event"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: Prisma.IntNullableFilter<"Event"> | number | null
+  image?: Prisma.StringNullableFilter<"Event"> | string | null
   isFeatured?: Prisma.BoolFilter<"Event"> | boolean
   categoryId?: Prisma.StringNullableFilter<"Event"> | string | null
   organizerId?: Prisma.StringFilter<"Event"> | string
@@ -320,6 +328,7 @@ export type EventOrderByWithRelationInput = {
   type?: Prisma.SortOrder
   fee?: Prisma.SortOrder
   maxAttendees?: Prisma.SortOrderInput | Prisma.SortOrder
+  image?: Prisma.SortOrderInput | Prisma.SortOrder
   isFeatured?: Prisma.SortOrder
   categoryId?: Prisma.SortOrderInput | Prisma.SortOrder
   organizerId?: Prisma.SortOrder
@@ -348,6 +357,7 @@ export type EventWhereUniqueInput = Prisma.AtLeast<{
   type?: Prisma.EnumEventTypeFilter<"Event"> | $Enums.EventType
   fee?: Prisma.DecimalFilter<"Event"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: Prisma.IntNullableFilter<"Event"> | number | null
+  image?: Prisma.StringNullableFilter<"Event"> | string | null
   isFeatured?: Prisma.BoolFilter<"Event"> | boolean
   categoryId?: Prisma.StringNullableFilter<"Event"> | string | null
   organizerId?: Prisma.StringFilter<"Event"> | string
@@ -373,6 +383,7 @@ export type EventOrderByWithAggregationInput = {
   type?: Prisma.SortOrder
   fee?: Prisma.SortOrder
   maxAttendees?: Prisma.SortOrderInput | Prisma.SortOrder
+  image?: Prisma.SortOrderInput | Prisma.SortOrder
   isFeatured?: Prisma.SortOrder
   categoryId?: Prisma.SortOrderInput | Prisma.SortOrder
   organizerId?: Prisma.SortOrder
@@ -399,6 +410,7 @@ export type EventScalarWhereWithAggregatesInput = {
   type?: Prisma.EnumEventTypeWithAggregatesFilter<"Event"> | $Enums.EventType
   fee?: Prisma.DecimalWithAggregatesFilter<"Event"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: Prisma.IntNullableWithAggregatesFilter<"Event"> | number | null
+  image?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
   isFeatured?: Prisma.BoolWithAggregatesFilter<"Event"> | boolean
   categoryId?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
   organizerId?: Prisma.StringWithAggregatesFilter<"Event"> | string
@@ -417,6 +429,7 @@ export type EventCreateInput = {
   type?: $Enums.EventType
   fee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: number | null
+  image?: string | null
   isFeatured?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -440,6 +453,7 @@ export type EventUncheckedCreateInput = {
   type?: $Enums.EventType
   fee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: number | null
+  image?: string | null
   isFeatured?: boolean
   categoryId?: string | null
   organizerId: string
@@ -463,6 +477,7 @@ export type EventUpdateInput = {
   type?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   fee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -486,6 +501,7 @@ export type EventUncheckedUpdateInput = {
   type?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   fee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizerId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -509,6 +525,7 @@ export type EventCreateManyInput = {
   type?: $Enums.EventType
   fee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: number | null
+  image?: string | null
   isFeatured?: boolean
   categoryId?: string | null
   organizerId: string
@@ -527,6 +544,7 @@ export type EventUpdateManyMutationInput = {
   type?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   fee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -543,6 +561,7 @@ export type EventUncheckedUpdateManyInput = {
   type?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   fee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizerId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -571,6 +590,7 @@ export type EventCountOrderByAggregateInput = {
   type?: Prisma.SortOrder
   fee?: Prisma.SortOrder
   maxAttendees?: Prisma.SortOrder
+  image?: Prisma.SortOrder
   isFeatured?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   organizerId?: Prisma.SortOrder
@@ -594,6 +614,7 @@ export type EventMaxOrderByAggregateInput = {
   type?: Prisma.SortOrder
   fee?: Prisma.SortOrder
   maxAttendees?: Prisma.SortOrder
+  image?: Prisma.SortOrder
   isFeatured?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   organizerId?: Prisma.SortOrder
@@ -612,6 +633,7 @@ export type EventMinOrderByAggregateInput = {
   type?: Prisma.SortOrder
   fee?: Prisma.SortOrder
   maxAttendees?: Prisma.SortOrder
+  image?: Prisma.SortOrder
   isFeatured?: Prisma.SortOrder
   categoryId?: Prisma.SortOrder
   organizerId?: Prisma.SortOrder
@@ -814,6 +836,7 @@ export type EventCreateWithoutOrganizerInput = {
   type?: $Enums.EventType
   fee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: number | null
+  image?: string | null
   isFeatured?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -836,6 +859,7 @@ export type EventUncheckedCreateWithoutOrganizerInput = {
   type?: $Enums.EventType
   fee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: number | null
+  image?: string | null
   isFeatured?: boolean
   categoryId?: string | null
   createdAt?: Date | string
@@ -887,6 +911,7 @@ export type EventScalarWhereInput = {
   type?: Prisma.EnumEventTypeFilter<"Event"> | $Enums.EventType
   fee?: Prisma.DecimalFilter<"Event"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: Prisma.IntNullableFilter<"Event"> | number | null
+  image?: Prisma.StringNullableFilter<"Event"> | string | null
   isFeatured?: Prisma.BoolFilter<"Event"> | boolean
   categoryId?: Prisma.StringNullableFilter<"Event"> | string | null
   organizerId?: Prisma.StringFilter<"Event"> | string
@@ -905,6 +930,7 @@ export type EventCreateWithoutCategoryInput = {
   type?: $Enums.EventType
   fee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: number | null
+  image?: string | null
   isFeatured?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -927,6 +953,7 @@ export type EventUncheckedCreateWithoutCategoryInput = {
   type?: $Enums.EventType
   fee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: number | null
+  image?: string | null
   isFeatured?: boolean
   organizerId: string
   createdAt?: Date | string
@@ -975,6 +1002,7 @@ export type EventCreateWithoutInvitationsInput = {
   type?: $Enums.EventType
   fee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: number | null
+  image?: string | null
   isFeatured?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -997,6 +1025,7 @@ export type EventUncheckedCreateWithoutInvitationsInput = {
   type?: $Enums.EventType
   fee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: number | null
+  image?: string | null
   isFeatured?: boolean
   categoryId?: string | null
   organizerId: string
@@ -1035,6 +1064,7 @@ export type EventUpdateWithoutInvitationsInput = {
   type?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   fee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1057,6 +1087,7 @@ export type EventUncheckedUpdateWithoutInvitationsInput = {
   type?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   fee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizerId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1079,6 +1110,7 @@ export type EventCreateWithoutParticipantsInput = {
   type?: $Enums.EventType
   fee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: number | null
+  image?: string | null
   isFeatured?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1101,6 +1133,7 @@ export type EventUncheckedCreateWithoutParticipantsInput = {
   type?: $Enums.EventType
   fee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: number | null
+  image?: string | null
   isFeatured?: boolean
   categoryId?: string | null
   organizerId: string
@@ -1139,6 +1172,7 @@ export type EventUpdateWithoutParticipantsInput = {
   type?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   fee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1161,6 +1195,7 @@ export type EventUncheckedUpdateWithoutParticipantsInput = {
   type?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   fee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizerId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1183,6 +1218,7 @@ export type EventCreateWithoutPaymentsInput = {
   type?: $Enums.EventType
   fee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: number | null
+  image?: string | null
   isFeatured?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1205,6 +1241,7 @@ export type EventUncheckedCreateWithoutPaymentsInput = {
   type?: $Enums.EventType
   fee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: number | null
+  image?: string | null
   isFeatured?: boolean
   categoryId?: string | null
   organizerId: string
@@ -1243,6 +1280,7 @@ export type EventUpdateWithoutPaymentsInput = {
   type?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   fee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1265,6 +1303,7 @@ export type EventUncheckedUpdateWithoutPaymentsInput = {
   type?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   fee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizerId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1287,6 +1326,7 @@ export type EventCreateWithoutReviewsInput = {
   type?: $Enums.EventType
   fee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: number | null
+  image?: string | null
   isFeatured?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1309,6 +1349,7 @@ export type EventUncheckedCreateWithoutReviewsInput = {
   type?: $Enums.EventType
   fee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: number | null
+  image?: string | null
   isFeatured?: boolean
   categoryId?: string | null
   organizerId: string
@@ -1347,6 +1388,7 @@ export type EventUpdateWithoutReviewsInput = {
   type?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   fee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1369,6 +1411,7 @@ export type EventUncheckedUpdateWithoutReviewsInput = {
   type?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   fee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizerId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1391,6 +1434,7 @@ export type EventCreateWithoutSavedByInput = {
   type?: $Enums.EventType
   fee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: number | null
+  image?: string | null
   isFeatured?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1413,6 +1457,7 @@ export type EventUncheckedCreateWithoutSavedByInput = {
   type?: $Enums.EventType
   fee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: number | null
+  image?: string | null
   isFeatured?: boolean
   categoryId?: string | null
   organizerId: string
@@ -1451,6 +1496,7 @@ export type EventUpdateWithoutSavedByInput = {
   type?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   fee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1473,6 +1519,7 @@ export type EventUncheckedUpdateWithoutSavedByInput = {
   type?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   fee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   organizerId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1495,6 +1542,7 @@ export type EventCreateManyOrganizerInput = {
   type?: $Enums.EventType
   fee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: number | null
+  image?: string | null
   isFeatured?: boolean
   categoryId?: string | null
   createdAt?: Date | string
@@ -1512,6 +1560,7 @@ export type EventUpdateWithoutOrganizerInput = {
   type?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   fee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1534,6 +1583,7 @@ export type EventUncheckedUpdateWithoutOrganizerInput = {
   type?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   fee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1556,6 +1606,7 @@ export type EventUncheckedUpdateManyWithoutOrganizerInput = {
   type?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   fee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   categoryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1573,6 +1624,7 @@ export type EventCreateManyCategoryInput = {
   type?: $Enums.EventType
   fee?: runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: number | null
+  image?: string | null
   isFeatured?: boolean
   organizerId: string
   createdAt?: Date | string
@@ -1590,6 +1642,7 @@ export type EventUpdateWithoutCategoryInput = {
   type?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   fee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1612,6 +1665,7 @@ export type EventUncheckedUpdateWithoutCategoryInput = {
   type?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   fee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   organizerId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1634,6 +1688,7 @@ export type EventUncheckedUpdateManyWithoutCategoryInput = {
   type?: Prisma.EnumEventTypeFieldUpdateOperationsInput | $Enums.EventType
   fee?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   maxAttendees?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isFeatured?: Prisma.BoolFieldUpdateOperationsInput | boolean
   organizerId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1718,6 +1773,7 @@ export type EventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   type?: boolean
   fee?: boolean
   maxAttendees?: boolean
+  image?: boolean
   isFeatured?: boolean
   categoryId?: boolean
   organizerId?: boolean
@@ -1744,6 +1800,7 @@ export type EventSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   type?: boolean
   fee?: boolean
   maxAttendees?: boolean
+  image?: boolean
   isFeatured?: boolean
   categoryId?: boolean
   organizerId?: boolean
@@ -1764,6 +1821,7 @@ export type EventSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   type?: boolean
   fee?: boolean
   maxAttendees?: boolean
+  image?: boolean
   isFeatured?: boolean
   categoryId?: boolean
   organizerId?: boolean
@@ -1784,6 +1842,7 @@ export type EventSelectScalar = {
   type?: boolean
   fee?: boolean
   maxAttendees?: boolean
+  image?: boolean
   isFeatured?: boolean
   categoryId?: boolean
   organizerId?: boolean
@@ -1791,7 +1850,7 @@ export type EventSelectScalar = {
   updatedAt?: boolean
 }
 
-export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "date" | "time" | "venue" | "eventLink" | "type" | "fee" | "maxAttendees" | "isFeatured" | "categoryId" | "organizerId" | "createdAt" | "updatedAt", ExtArgs["result"]["event"]>
+export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "date" | "time" | "venue" | "eventLink" | "type" | "fee" | "maxAttendees" | "image" | "isFeatured" | "categoryId" | "organizerId" | "createdAt" | "updatedAt", ExtArgs["result"]["event"]>
 export type EventInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   category?: boolean | Prisma.Event$categoryArgs<ExtArgs>
   organizer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1833,6 +1892,7 @@ export type $EventPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     type: $Enums.EventType
     fee: runtime.Decimal
     maxAttendees: number | null
+    image: string | null
     isFeatured: boolean
     categoryId: string | null
     organizerId: string
@@ -2278,6 +2338,7 @@ export interface EventFieldRefs {
   readonly type: Prisma.FieldRef<"Event", 'EventType'>
   readonly fee: Prisma.FieldRef<"Event", 'Decimal'>
   readonly maxAttendees: Prisma.FieldRef<"Event", 'Int'>
+  readonly image: Prisma.FieldRef<"Event", 'String'>
   readonly isFeatured: Prisma.FieldRef<"Event", 'Boolean'>
   readonly categoryId: Prisma.FieldRef<"Event", 'String'>
   readonly organizerId: Prisma.FieldRef<"Event", 'String'>

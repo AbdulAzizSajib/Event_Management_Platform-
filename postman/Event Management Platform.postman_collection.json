@@ -27,8 +27,12 @@
 						"header": [],
 						"url": {
 							"raw": "{{baseUrl}}/",
-							"host": ["{{baseUrl}}"],
-							"path": [""]
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								""
+							]
 						}
 					}
 				}
@@ -53,8 +57,13 @@
 						},
 						"url": {
 							"raw": "{{apiUrl}}/auth/register",
-							"host": ["{{apiUrl}}"],
-							"path": ["auth", "register"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
 						}
 					}
 				},
@@ -74,8 +83,13 @@
 						},
 						"url": {
 							"raw": "{{apiUrl}}/auth/login",
-							"host": ["{{apiUrl}}"],
-							"path": ["auth", "login"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
 						}
 					}
 				},
@@ -95,8 +109,13 @@
 						},
 						"url": {
 							"raw": "{{apiUrl}}/auth/login",
-							"host": ["{{apiUrl}}"],
-							"path": ["auth", "login"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
 						}
 					}
 				},
@@ -107,8 +126,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/auth/me",
-							"host": ["{{apiUrl}}"],
-							"path": ["auth", "me"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"auth",
+								"me"
+							]
 						},
 						"description": "Requires authentication (session cookie or access token)"
 					}
@@ -129,8 +153,13 @@
 						},
 						"url": {
 							"raw": "{{apiUrl}}/auth/change-password",
-							"host": ["{{apiUrl}}"],
-							"path": ["auth", "change-password"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"auth",
+								"change-password"
+							]
 						},
 						"description": "Requires authentication"
 					}
@@ -142,8 +171,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/auth/refresh-token",
-							"host": ["{{apiUrl}}"],
-							"path": ["auth", "refresh-token"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"auth",
+								"refresh-token"
+							]
 						},
 						"description": "Requires refreshToken and better-auth.session_token cookies"
 					}
@@ -155,8 +189,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/auth/logout",
-							"host": ["{{apiUrl}}"],
-							"path": ["auth", "logout"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
 						},
 						"description": "Requires authentication. Clears all auth cookies."
 					}
@@ -177,8 +216,13 @@
 						},
 						"url": {
 							"raw": "{{apiUrl}}/auth/verify-email",
-							"host": ["{{apiUrl}}"],
-							"path": ["auth", "verify-email"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"auth",
+								"verify-email"
+							]
 						},
 						"description": "Check server console for OTP in dev mode"
 					}
@@ -199,8 +243,13 @@
 						},
 						"url": {
 							"raw": "{{apiUrl}}/auth/forget-password",
-							"host": ["{{apiUrl}}"],
-							"path": ["auth", "forget-password"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"auth",
+								"forget-password"
+							]
 						},
 						"description": "Sends OTP to email. Check server console in dev mode."
 					}
@@ -221,8 +270,13 @@
 						},
 						"url": {
 							"raw": "{{apiUrl}}/auth/reset-password",
-							"host": ["{{apiUrl}}"],
-							"path": ["auth", "reset-password"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"auth",
+								"reset-password"
+							]
 						}
 					}
 				},
@@ -233,8 +287,14 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/auth/login/google?redirect=/dashboard",
-							"host": ["{{apiUrl}}"],
-							"path": ["auth", "login", "google"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"auth",
+								"login",
+								"google"
+							],
 							"query": [
 								{
 									"key": "redirect",
@@ -257,8 +317,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/users/dashboard",
-							"host": ["{{apiUrl}}"],
-							"path": ["users", "dashboard"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"users",
+								"dashboard"
+							]
 						},
 						"description": "Requires authentication. Returns counts + recent organized events, participations, pending invitations, reviews."
 					}
@@ -279,8 +344,13 @@
 						},
 						"url": {
 							"raw": "{{apiUrl}}/users/profile",
-							"host": ["{{apiUrl}}"],
-							"path": ["users", "profile"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"users",
+								"profile"
+							]
 						},
 						"description": "Requires authentication. All fields optional."
 					}
@@ -301,8 +371,13 @@
 						},
 						"url": {
 							"raw": "{{apiUrl}}/users/create-admin",
-							"host": ["{{apiUrl}}"],
-							"path": ["users", "create-admin"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"users",
+								"create-admin"
+							]
 						},
 						"description": "Requires SUPER_ADMIN or ADMIN role"
 					}
@@ -319,8 +394,12 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/categories",
-							"host": ["{{apiUrl}}"],
-							"path": ["categories"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"categories"
+							]
 						},
 						"description": "Public endpoint"
 					}
@@ -341,8 +420,12 @@
 						},
 						"url": {
 							"raw": "{{apiUrl}}/categories",
-							"host": ["{{apiUrl}}"],
-							"path": ["categories"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"categories"
+							]
 						},
 						"description": "Requires ADMIN or SUPER_ADMIN role"
 					}
@@ -363,8 +446,13 @@
 						},
 						"url": {
 							"raw": "{{apiUrl}}/categories/:id",
-							"host": ["{{apiUrl}}"],
-							"path": ["categories", ":id"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"categories",
+								":id"
+							],
 							"variable": [
 								{
 									"key": "id",
@@ -382,8 +470,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/categories/:id",
-							"host": ["{{apiUrl}}"],
-							"path": ["categories", ":id"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"categories",
+								":id"
+							],
 							"variable": [
 								{
 									"key": "id",
@@ -406,8 +499,12 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/events?page=1&limit=10",
-							"host": ["{{apiUrl}}"],
-							"path": ["events"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"events"
+							],
 							"query": [
 								{
 									"key": "page",
@@ -454,8 +551,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/events/:id",
-							"host": ["{{apiUrl}}"],
-							"path": ["events", ":id"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"events",
+								":id"
+							],
 							"variable": [
 								{
 									"key": "id",
@@ -470,44 +572,144 @@
 					"name": "Create Event",
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
+						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"title\": \"Tech Meetup 2026\",\n  \"description\": \"A meetup for tech enthusiasts\",\n  \"date\": \"2026-04-15T00:00:00.000Z\",\n  \"time\": \"10:00 AM\",\n  \"venue\": \"Dhaka Tech Hub\",\n  \"type\": \"PUBLIC\",\n  \"fee\": 0,\n  \"maxAttendees\": 100,\n  \"categoryId\": \"category-id-here\"\n}"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Tech Meetup 2026",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "A meetup for tech enthusiasts",
+									"type": "text"
+								},
+								{
+									"key": "date",
+									"value": "2026-04-15T00:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "time",
+									"value": "10:00 AM",
+									"type": "text"
+								},
+								{
+									"key": "venue",
+									"value": "Dhaka Tech Hub",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "PUBLIC",
+									"type": "text"
+								},
+								{
+									"key": "fee",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "maxAttendees",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "categoryId",
+									"value": "category-id-here",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": ""
+								}
+							]
 						},
 						"url": {
 							"raw": "{{apiUrl}}/events",
-							"host": ["{{apiUrl}}"],
-							"path": ["events"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"events"
+							]
 						},
-						"description": "Requires authentication. fee=0 for free events."
+						"description": "Requires authentication. form-data with optional image file. fee=0 for free events."
 					}
 				},
 				{
 					"name": "Create Paid Private Event",
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
+						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"title\": \"Exclusive Workshop\",\n  \"description\": \"Premium workshop with limited seats\",\n  \"date\": \"2026-05-20T00:00:00.000Z\",\n  \"time\": \"2:00 PM\",\n  \"venue\": \"Conference Room A\",\n  \"type\": \"PRIVATE\",\n  \"fee\": 500,\n  \"maxAttendees\": 30,\n  \"categoryId\": \"category-id-here\"\n}"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Exclusive Workshop",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Premium workshop with limited seats",
+									"type": "text"
+								},
+								{
+									"key": "date",
+									"value": "2026-05-20T00:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "time",
+									"value": "2:00 PM",
+									"type": "text"
+								},
+								{
+									"key": "venue",
+									"value": "Conference Room A",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "PRIVATE",
+									"type": "text"
+								},
+								{
+									"key": "fee",
+									"value": "500",
+									"type": "text"
+								},
+								{
+									"key": "maxAttendees",
+									"value": "30",
+									"type": "text"
+								},
+								{
+									"key": "categoryId",
+									"value": "category-id-here",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": ""
+								}
+							]
 						},
 						"url": {
 							"raw": "{{apiUrl}}/events",
-							"host": ["{{apiUrl}}"],
-							"path": ["events"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"events"
+							]
 						},
-						"description": "Requires authentication. Paid private event."
+						"description": "Requires authentication. Paid private event with optional image."
 					}
 				},
 				{
@@ -526,8 +728,13 @@
 						},
 						"url": {
 							"raw": "{{apiUrl}}/events/:id",
-							"host": ["{{apiUrl}}"],
-							"path": ["events", ":id"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"events",
+								":id"
+							],
 							"variable": [
 								{
 									"key": "id",
@@ -545,8 +752,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/events/:id",
-							"host": ["{{apiUrl}}"],
-							"path": ["events", ":id"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"events",
+								":id"
+							],
 							"variable": [
 								{
 									"key": "id",
@@ -564,8 +776,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/events/my-events",
-							"host": ["{{apiUrl}}"],
-							"path": ["events", "my-events"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"events",
+								"my-events"
+							]
 						},
 						"description": "Requires authentication. Returns events organized by current user."
 					}
@@ -577,8 +794,14 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/events/:id/toggle-featured",
-							"host": ["{{apiUrl}}"],
-							"path": ["events", ":id", "toggle-featured"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"events",
+								":id",
+								"toggle-featured"
+							],
 							"variable": [
 								{
 									"key": "id",
@@ -587,6 +810,66 @@
 							]
 						},
 						"description": "Requires ADMIN or SUPER_ADMIN role"
+					}
+				},
+				{
+					"name": "Upload Event Image",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{apiUrl}}/events/:id/image",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"events",
+								":id",
+								"image"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "event-id-here"
+								}
+							]
+						},
+						"description": "Requires authentication. Upload event banner/cover image (form-data, key: image). Only organizer or admin. Max 5MB, JPEG/PNG/WebP/GIF. Replaces existing image."
+					}
+				},
+				{
+					"name": "Remove Event Image",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/events/:id/image",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"events",
+								":id",
+								"image"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "event-id-here"
+								}
+							]
+						},
+						"description": "Requires authentication. Removes event image from Cloudinary. Only organizer or admin."
 					}
 				}
 			]
@@ -610,8 +893,13 @@
 						},
 						"url": {
 							"raw": "{{apiUrl}}/participants/join",
-							"host": ["{{apiUrl}}"],
-							"path": ["participants", "join"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"participants",
+								"join"
+							]
 						},
 						"description": "Requires authentication. Free PUBLIC events auto-approve. Paid events require payment."
 					}
@@ -623,8 +911,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/participants/my-participations",
-							"host": ["{{apiUrl}}"],
-							"path": ["participants", "my-participations"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"participants",
+								"my-participations"
+							]
 						},
 						"description": "Requires authentication"
 					}
@@ -636,8 +929,14 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/participants/event/:eventId",
-							"host": ["{{apiUrl}}"],
-							"path": ["participants", "event", ":eventId"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"participants",
+								"event",
+								":eventId"
+							],
 							"variable": [
 								{
 									"key": "eventId",
@@ -664,8 +963,14 @@
 						},
 						"url": {
 							"raw": "{{apiUrl}}/participants/:participantId/status",
-							"host": ["{{apiUrl}}"],
-							"path": ["participants", ":participantId", "status"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"participants",
+								":participantId",
+								"status"
+							],
 							"variable": [
 								{
 									"key": "participantId",
@@ -683,8 +988,14 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/participants/cancel/:eventId",
-							"host": ["{{apiUrl}}"],
-							"path": ["participants", "cancel", ":eventId"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"participants",
+								"cancel",
+								":eventId"
+							],
 							"variable": [
 								{
 									"key": "eventId",
@@ -716,8 +1027,13 @@
 						},
 						"url": {
 							"raw": "{{apiUrl}}/payments/create-checkout-session",
-							"host": ["{{apiUrl}}"],
-							"path": ["payments", "create-checkout-session"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"payments",
+								"create-checkout-session"
+							]
 						},
 						"description": "Requires authentication. Returns Stripe checkout URL. Open in browser to pay. Test card: 4242 4242 4242 4242"
 					}
@@ -729,8 +1045,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/payments/my-payments",
-							"host": ["{{apiUrl}}"],
-							"path": ["payments", "my-payments"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"payments",
+								"my-payments"
+							]
 						},
 						"description": "Requires authentication"
 					}
@@ -742,8 +1063,14 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/payments/verify/:sessionId",
-							"host": ["{{apiUrl}}"],
-							"path": ["payments", "verify", ":sessionId"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"payments",
+								"verify",
+								":sessionId"
+							],
 							"variable": [
 								{
 									"key": "sessionId",
@@ -761,8 +1088,14 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/payments/event/:eventId",
-							"host": ["{{apiUrl}}"],
-							"path": ["payments", "event", ":eventId"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"payments",
+								"event",
+								":eventId"
+							],
 							"variable": [
 								{
 									"key": "eventId",
@@ -794,8 +1127,13 @@
 						},
 						"url": {
 							"raw": "{{apiUrl}}/invitations/send",
-							"host": ["{{apiUrl}}"],
-							"path": ["invitations", "send"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"invitations",
+								"send"
+							]
 						},
 						"description": "Requires authentication. Only event organizer can invite."
 					}
@@ -807,8 +1145,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/invitations/my-invitations",
-							"host": ["{{apiUrl}}"],
-							"path": ["invitations", "my-invitations"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"invitations",
+								"my-invitations"
+							]
 						},
 						"description": "Requires authentication. Returns invitations received by current user."
 					}
@@ -820,8 +1163,14 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/invitations/event/:eventId",
-							"host": ["{{apiUrl}}"],
-							"path": ["invitations", "event", ":eventId"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"invitations",
+								"event",
+								":eventId"
+							],
 							"variable": [
 								{
 									"key": "eventId",
@@ -848,8 +1197,14 @@
 						},
 						"url": {
 							"raw": "{{apiUrl}}/invitations/:invitationId/respond",
-							"host": ["{{apiUrl}}"],
-							"path": ["invitations", ":invitationId", "respond"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"invitations",
+								":invitationId",
+								"respond"
+							],
 							"variable": [
 								{
 									"key": "invitationId",
@@ -867,8 +1222,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/invitations/:invitationId",
-							"host": ["{{apiUrl}}"],
-							"path": ["invitations", ":invitationId"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"invitations",
+								":invitationId"
+							],
 							"variable": [
 								{
 									"key": "invitationId",
@@ -900,8 +1260,12 @@
 						},
 						"url": {
 							"raw": "{{apiUrl}}/reviews",
-							"host": ["{{apiUrl}}"],
-							"path": ["reviews"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"reviews"
+							]
 						},
 						"description": "Requires authentication. Only APPROVED participants can review. Rating: 1-5."
 					}
@@ -913,8 +1277,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/reviews/my-reviews",
-							"host": ["{{apiUrl}}"],
-							"path": ["reviews", "my-reviews"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"reviews",
+								"my-reviews"
+							]
 						},
 						"description": "Requires authentication"
 					}
@@ -926,8 +1295,14 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/reviews/event/:eventId",
-							"host": ["{{apiUrl}}"],
-							"path": ["reviews", "event", ":eventId"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"reviews",
+								"event",
+								":eventId"
+							],
 							"variable": [
 								{
 									"key": "eventId",
@@ -954,8 +1329,13 @@
 						},
 						"url": {
 							"raw": "{{apiUrl}}/reviews/:reviewId",
-							"host": ["{{apiUrl}}"],
-							"path": ["reviews", ":reviewId"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"reviews",
+								":reviewId"
+							],
 							"variable": [
 								{
 									"key": "reviewId",
@@ -973,8 +1353,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/reviews/:reviewId",
-							"host": ["{{apiUrl}}"],
-							"path": ["reviews", ":reviewId"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"reviews",
+								":reviewId"
+							],
 							"variable": [
 								{
 									"key": "reviewId",
@@ -1006,8 +1391,12 @@
 						},
 						"url": {
 							"raw": "{{apiUrl}}/saved-events",
-							"host": ["{{apiUrl}}"],
-							"path": ["saved-events"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"saved-events"
+							]
 						},
 						"description": "Requires authentication. Save/bookmark an event."
 					}
@@ -1019,8 +1408,12 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/saved-events?page=1&limit=10",
-							"host": ["{{apiUrl}}"],
-							"path": ["saved-events"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"saved-events"
+							],
 							"query": [
 								{
 									"key": "page",
@@ -1052,8 +1445,14 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/saved-events/status/:eventId",
-							"host": ["{{apiUrl}}"],
-							"path": ["saved-events", "status", ":eventId"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"saved-events",
+								"status",
+								":eventId"
+							],
 							"variable": [
 								{
 									"key": "eventId",
@@ -1071,8 +1470,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/saved-events/:eventId",
-							"host": ["{{apiUrl}}"],
-							"path": ["saved-events", ":eventId"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"saved-events",
+								":eventId"
+							],
 							"variable": [
 								{
 									"key": "eventId",
@@ -1095,8 +1499,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/admin/dashboard",
-							"host": ["{{apiUrl}}"],
-							"path": ["admin", "dashboard"]
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"admin",
+								"dashboard"
+							]
 						},
 						"description": "Requires ADMIN or SUPER_ADMIN role. Returns platform stats."
 					}
@@ -1108,8 +1517,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/admin/users?page=1&limit=10",
-							"host": ["{{apiUrl}}"],
-							"path": ["admin", "users"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"admin",
+								"users"
+							],
 							"query": [
 								{
 									"key": "page",
@@ -1146,8 +1560,14 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/admin/users/:userId",
-							"host": ["{{apiUrl}}"],
-							"path": ["admin", "users", ":userId"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"admin",
+								"users",
+								":userId"
+							],
 							"variable": [
 								{
 									"key": "userId",
@@ -1174,8 +1594,15 @@
 						},
 						"url": {
 							"raw": "{{apiUrl}}/admin/users/:userId/status",
-							"host": ["{{apiUrl}}"],
-							"path": ["admin", "users", ":userId", "status"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"admin",
+								"users",
+								":userId",
+								"status"
+							],
 							"variable": [
 								{
 									"key": "userId",
@@ -1193,8 +1620,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/admin/events?page=1&limit=10",
-							"host": ["{{apiUrl}}"],
-							"path": ["admin", "events"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"admin",
+								"events"
+							],
 							"query": [
 								{
 									"key": "page",
@@ -1221,8 +1653,14 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/admin/events/:eventId",
-							"host": ["{{apiUrl}}"],
-							"path": ["admin", "events", ":eventId"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"admin",
+								"events",
+								":eventId"
+							],
 							"variable": [
 								{
 									"key": "eventId",
@@ -1240,8 +1678,13 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/admin/reviews?page=1&limit=10",
-							"host": ["{{apiUrl}}"],
-							"path": ["admin", "reviews"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"admin",
+								"reviews"
+							],
 							"query": [
 								{
 									"key": "page",
@@ -1263,8 +1706,14 @@
 						"header": [],
 						"url": {
 							"raw": "{{apiUrl}}/admin/reviews/:reviewId",
-							"host": ["{{apiUrl}}"],
-							"path": ["admin", "reviews", ":reviewId"],
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"admin",
+								"reviews",
+								":reviewId"
+							],
 							"variable": [
 								{
 									"key": "reviewId",

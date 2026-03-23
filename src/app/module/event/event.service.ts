@@ -1,8 +1,12 @@
 import status from "http-status";
-import { Prisma } from "../../../generated/prisma/client";
+import { Event, Prisma } from "../../../generated/prisma/client";
 import { Role } from "../../../generated/prisma/enums";
 import AppError from "../../errorHelpers/AppError";
 import { prisma } from "../../lib/prisma";
+import {
+  deleteFileFromCloudinary,
+  uploadFileToCloudinary,
+} from "../../config/cloudinary.config";
 import { ICreateEvent, IUpdateEvent } from "./event.interface";
 import { IQueryParams } from "../../interfaces/query.interface";
 
@@ -12,7 +16,15 @@ const EVENT_FILTERABLE_FIELDS = ["type", "isFeatured", "organizerId", "categoryI
 const createEvent = async (
   organizerId: string,
   payload: ICreateEvent,
+  file?: Express.Multer.File,
 ) => {
+  let imageUrl: string | null = null;
+
+  if (file) {
+    const uploaded = await uploadFileToCloudinary(file.buffer, file.originalname);
+    imageUrl = uploaded.secure_url;
+  }
+
   const data: Prisma.EventUncheckedCreateInput = {
     title: payload.title,
     description: payload.description,
@@ -20,6 +32,7 @@ const createEvent = async (
     time: payload.time,
     venue: payload.venue ?? null,
     eventLink: payload.eventLink ?? null,
+    image: imageUrl,
     organizerId,
     categoryId: payload.categoryId ?? null,
   };
@@ -330,6 +343,81 @@ const toggleFeatured = async (eventId: string) => {
   return updatedEvent;
 };
 
+const uploadImage = async (
+  eventId: string,
+  userId: string,
+  userRole: Role,
+  file: Express.Multer.File,
+): Promise<Event> => {
+  const event = await prisma.event.findUnique({
+    where: { id: eventId },
+  });
+
+  if (!event) {
+    throw new AppError(status.NOT_FOUND, "Event not found");
+  }
+
+  if (event.organizerId !== userId && userRole === Role.USER) {
+    throw new AppError(
+      status.FORBIDDEN,
+      "You are not authorized to update this event",
+    );
+  }
+
+  // Delete old image if exists
+  if (event.image) {
+    await deleteFileFromCloudinary(event.image);
+  }
+
+  const uploaded = await uploadFileToCloudinary(file.buffer, file.originalname);
+
+  const updatedEvent = await prisma.event.update({
+    where: { id: eventId },
+    data: { image: uploaded.secure_url },
+    include: {
+      organizer: {
+        select: { id: true, name: true, email: true, image: true },
+      },
+    },
+  });
+
+  return updatedEvent;
+};
+
+const removeImage = async (
+  eventId: string,
+  userId: string,
+  userRole: Role,
+): Promise<Event> => {
+  const event = await prisma.event.findUnique({
+    where: { id: eventId },
+  });
+
+  if (!event) {
+    throw new AppError(status.NOT_FOUND, "Event not found");
+  }
+
+  if (event.organizerId !== userId && userRole === Role.USER) {
+    throw new AppError(
+      status.FORBIDDEN,
+      "You are not authorized to update this event",
+    );
+  }
+
+  if (!event.image) {
+    throw new AppError(status.BAD_REQUEST, "Event has no image to remove");
+  }
+
+  await deleteFileFromCloudinary(event.image);
+
+  const updatedEvent = await prisma.event.update({
+    where: { id: eventId },
+    data: { image: null },
+  });
+
+  return updatedEvent;
+};
+
 export const eventService = {
   createEvent,
   getAllEvents,
@@ -338,4 +426,6 @@ export const eventService = {
   updateEvent,
   deleteEvent,
   toggleFeatured,
+  uploadImage,
+  removeImage,
 };
