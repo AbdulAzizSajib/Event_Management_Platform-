@@ -100,6 +100,17 @@ const toggleFeatured = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getPlatformStats = catchAsync(async (req: Request, res: Response) => {
+  const result = await eventService.getPlatformStats();
+
+  sendResponse(res, {
+    httpStatusCode: status.OK,
+    success: true,
+    message: "Platform stats retrieved successfully",
+    data: result,
+  });
+});
+
 export const eventController = {
   createEvent,
   getAllEvents,
@@ -108,4 +119,5 @@ export const eventController = {
   updateEvent,
   deleteEvent,
   toggleFeatured,
+  getPlatformStats,
 };

@@ -10,6 +10,7 @@ const eventRouter = Router();
 
 // Public routes
 eventRouter.get("/", eventController.getAllEvents);
+eventRouter.get("/platform-stats", eventController.getPlatformStats);
 
 // Authenticated routes (must be before /:id to avoid conflict)
 eventRouter.get(

@@ -75,10 +75,23 @@ const getMyReviews = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getFeaturedReviews = catchAsync(async (req: Request, res: Response) => {
+  const limit = req.query.limit ? Number(req.query.limit) : 10;
+  const result = await reviewService.getFeaturedReviews(limit);
+
+  sendResponse(res, {
+    httpStatusCode: status.OK,
+    success: true,
+    message: "Featured reviews retrieved successfully",
+    data: result,
+  });
+});
+
 export const reviewController = {
   createReview,
   updateReview,
   deleteReview,
   getEventReviews,
   getMyReviews,
+  getFeaturedReviews,
 };

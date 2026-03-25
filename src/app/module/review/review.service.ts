@@ -258,10 +258,35 @@ const getMyReviews = async (
   };
 };
 
+const getFeaturedReviews = async (limit = 10): Promise<Review[]> => {
+  return prisma.review.findMany({
+    where: { rating: { gte: 4 } },
+    orderBy: [{ rating: "desc" }, { createdAt: "desc" }],
+    take: limit,
+    include: {
+      user: {
+        select: {
+          id: true,
+          name: true,
+          image: true,
+        },
+      },
+      event: {
+        select: {
+          id: true,
+          title: true,
+          image: true,
+        },
+      },
+    },
+  });
+};
+
 export const reviewService = {
   createReview,
   updateReview,
   deleteReview,
   getEventReviews,
   getMyReviews,
+  getFeaturedReviews,
 };

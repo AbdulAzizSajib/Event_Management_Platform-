@@ -504,6 +504,24 @@
 			"name": "Events",
 			"item": [
 				{
+					"name": "Platform Stats (Public)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/events/platform-stats",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"events",
+								"platform-stats"
+							]
+						},
+						"description": "Public. Returns totalUsers, totalEvents, totalTicketsSold, avgRating for homepage."
+					}
+				},
+				{
 					"name": "Get All Events",
 					"request": {
 						"method": "GET",
@@ -727,15 +745,61 @@
 					"name": "Update Event",
 					"request": {
 						"method": "PATCH",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
+						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"title\": \"Updated Event Title\",\n  \"venue\": \"New Venue\",\n  \"maxAttendees\": 200\n}"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Updated Event Title",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Updated description here",
+									"type": "text"
+								},
+								{
+									"key": "date",
+									"value": "2026-06-01T00:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "time",
+									"value": "11:00 AM",
+									"type": "text"
+								},
+								{
+									"key": "venue",
+									"value": "Updated Venue",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "PUBLIC",
+									"type": "text"
+								},
+								{
+									"key": "fee",
+									"value": "200",
+									"type": "text"
+								},
+								{
+									"key": "maxAttendees",
+									"value": "50",
+									"type": "text"
+								},
+								{
+									"key": "categoryId",
+									"value": "category-id-here",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": ""
+								}
+							]
 						},
 						"url": {
 							"raw": "{{apiUrl}}/events/:id",
@@ -753,7 +817,7 @@
 								}
 							]
 						},
-						"description": "Requires authentication. Only organizer can update."
+						"description": "Requires authentication. form-data with optional image. All fields optional. Image replaces old one in Cloudinary."
 					}
 				},
 				{
@@ -821,66 +885,6 @@
 							]
 						},
 						"description": "Requires ADMIN or SUPER_ADMIN role"
-					}
-				},
-				{
-					"name": "Upload Event Image",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "image",
-									"type": "file",
-									"src": ""
-								}
-							]
-						},
-						"url": {
-							"raw": "{{apiUrl}}/events/:id/image",
-							"host": [
-								"{{apiUrl}}"
-							],
-							"path": [
-								"events",
-								":id",
-								"image"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "event-id-here"
-								}
-							]
-						},
-						"description": "Requires authentication. Upload event banner/cover image (form-data, key: image). Only organizer or admin. Max 5MB, JPEG/PNG/WebP/GIF. Replaces existing image."
-					}
-				},
-				{
-					"name": "Remove Event Image",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{apiUrl}}/events/:id/image",
-							"host": [
-								"{{apiUrl}}"
-							],
-							"path": [
-								"events",
-								":id",
-								"image"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "event-id-here"
-								}
-							]
-						},
-						"description": "Requires authentication. Removes event image from Cloudinary. Only organizer or admin."
 					}
 				}
 			]
@@ -1274,6 +1278,30 @@
 		{
 			"name": "Reviews",
 			"item": [
+				{
+					"name": "Get Featured Reviews (Public)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/reviews/featured?limit=10",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"reviews",
+								"featured"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						},
+						"description": "Public. Returns top-rated reviews (rating >= 4) for homepage. Use ?limit= to control count."
+					}
+				},
 				{
 					"name": "Create Review",
 					"request": {

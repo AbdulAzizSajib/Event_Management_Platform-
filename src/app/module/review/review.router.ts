@@ -22,6 +22,9 @@ reviewRouter.get(
   reviewController.getMyReviews,
 );
 
+// Get featured reviews for homepage (public)
+reviewRouter.get("/featured", reviewController.getFeaturedReviews);
+
 // Get reviews for an event (public)
 reviewRouter.get(
   "/event/:eventId",

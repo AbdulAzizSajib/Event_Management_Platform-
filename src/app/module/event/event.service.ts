@@ -1,5 +1,5 @@
 import status from "http-status";
-import { Event, Prisma } from "../../../generated/prisma/client";
+import { Prisma } from "../../../generated/prisma/client";
 import { Role } from "../../../generated/prisma/enums";
 import AppError from "../../errorHelpers/AppError";
 import { prisma } from "../../lib/prisma";
@@ -357,6 +357,25 @@ const toggleFeatured = async (eventId: string) => {
   return updatedEvent;
 };
 
+const getPlatformStats = async () => {
+  const [totalUsers, totalEvents, totalTicketsSold, ratingResult] =
+    await Promise.all([
+      prisma.user.count({ where: { isDeleted: false } }),
+      prisma.event.count(),
+      prisma.participant.count({ where: { status: "APPROVED" } }),
+      prisma.review.aggregate({ _avg: { rating: true } }),
+    ]);
+
+  return {
+    totalUsers,
+    totalEvents,
+    totalTicketsSold,
+    avgRating: ratingResult._avg.rating
+      ? Number(ratingResult._avg.rating.toFixed(1))
+      : 0,
+  };
+};
+
 export const eventService = {
   createEvent,
   getAllEvents,
@@ -365,4 +384,5 @@ export const eventService = {
   updateEvent,
   deleteEvent,
   toggleFeatured,
+  getPlatformStats,
 };
