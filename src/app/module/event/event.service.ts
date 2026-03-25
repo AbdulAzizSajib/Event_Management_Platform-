@@ -260,6 +260,7 @@ const updateEvent = async (
   userId: string,
   userRole: Role,
   payload: IUpdateEvent,
+  file?: Express.Multer.File,
 ) => {
   const event = await prisma.event.findUnique({
     where: { id: eventId },
@@ -279,6 +280,14 @@ const updateEvent = async (
   const updateData: Prisma.EventUpdateInput = { ...payload };
   if (payload.date) {
     updateData.date = new Date(payload.date);
+  }
+
+  if (file) {
+    if (event.image) {
+      await deleteFileFromCloudinary(event.image);
+    }
+    const uploaded = await uploadFileToCloudinary(file.buffer, file.originalname);
+    updateData.image = uploaded.secure_url;
   }
 
   const updatedEvent = await prisma.event.update({
@@ -348,81 +357,6 @@ const toggleFeatured = async (eventId: string) => {
   return updatedEvent;
 };
 
-const uploadImage = async (
-  eventId: string,
-  userId: string,
-  userRole: Role,
-  file: Express.Multer.File,
-): Promise<Event> => {
-  const event = await prisma.event.findUnique({
-    where: { id: eventId },
-  });
-
-  if (!event) {
-    throw new AppError(status.NOT_FOUND, "Event not found");
-  }
-
-  if (event.organizerId !== userId && userRole === Role.USER) {
-    throw new AppError(
-      status.FORBIDDEN,
-      "You are not authorized to update this event",
-    );
-  }
-
-  // Delete old image if exists
-  if (event.image) {
-    await deleteFileFromCloudinary(event.image);
-  }
-
-  const uploaded = await uploadFileToCloudinary(file.buffer, file.originalname);
-
-  const updatedEvent = await prisma.event.update({
-    where: { id: eventId },
-    data: { image: uploaded.secure_url },
-    include: {
-      organizer: {
-        select: { id: true, name: true, email: true, image: true },
-      },
-    },
-  });
-
-  return updatedEvent;
-};
-
-const removeImage = async (
-  eventId: string,
-  userId: string,
-  userRole: Role,
-): Promise<Event> => {
-  const event = await prisma.event.findUnique({
-    where: { id: eventId },
-  });
-
-  if (!event) {
-    throw new AppError(status.NOT_FOUND, "Event not found");
-  }
-
-  if (event.organizerId !== userId && userRole === Role.USER) {
-    throw new AppError(
-      status.FORBIDDEN,
-      "You are not authorized to update this event",
-    );
-  }
-
-  if (!event.image) {
-    throw new AppError(status.BAD_REQUEST, "Event has no image to remove");
-  }
-
-  await deleteFileFromCloudinary(event.image);
-
-  const updatedEvent = await prisma.event.update({
-    where: { id: eventId },
-    data: { image: null },
-  });
-
-  return updatedEvent;
-};
-
 export const eventService = {
   createEvent,
   getAllEvents,
@@ -431,6 +365,4 @@ export const eventService = {
   updateEvent,
   deleteEvent,
   toggleFeatured,
-  uploadImage,
-  removeImage,
 };

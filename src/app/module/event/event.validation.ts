@@ -35,8 +35,8 @@ export const updateEventZodSchema = z.object({
   venue: z.string().nullable().optional(),
   eventLink: z.string().url("Event link must be a valid URL").nullable().optional(),
   type: z.enum(["PUBLIC", "PRIVATE"]).optional(),
-  fee: z.number().min(0, "Fee cannot be negative").optional(),
-  maxAttendees: z.number().int().min(1, "Max attendees must be at least 1").nullable().optional(),
+  fee: z.coerce.number().min(0, "Fee cannot be negative").optional(),
+  maxAttendees: z.coerce.number().int().min(1, "Max attendees must be at least 1").nullable().optional(),
   categoryId: z.string().uuid("Invalid category ID").optional(),
 });
 

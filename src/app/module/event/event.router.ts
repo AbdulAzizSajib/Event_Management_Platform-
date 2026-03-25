@@ -32,6 +32,7 @@ eventRouter.get("/:id", eventController.getEventById);
 eventRouter.patch(
   "/:id",
   checkAuth(Role.USER, Role.ADMIN, Role.SUPER_ADMIN),
+  multerUpload.single("image"),
   validateRequest(EventValidation.updateEventZodSchema),
   eventController.updateEvent,
 );
@@ -40,20 +41,6 @@ eventRouter.delete(
   "/:id",
   checkAuth(Role.USER, Role.ADMIN, Role.SUPER_ADMIN),
   eventController.deleteEvent,
-);
-
-// Image upload/remove
-eventRouter.patch(
-  "/:id/image",
-  checkAuth(Role.USER, Role.ADMIN, Role.SUPER_ADMIN),
-  multerUpload.single("image"),
-  eventController.uploadImage,
-);
-
-eventRouter.delete(
-  "/:id/image",
-  checkAuth(Role.USER, Role.ADMIN, Role.SUPER_ADMIN),
-  eventController.removeImage,
 );
 
 // Admin only

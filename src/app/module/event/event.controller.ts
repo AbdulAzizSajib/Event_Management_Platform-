@@ -64,6 +64,7 @@ const updateEvent = catchAsync(async (req: Request, res: Response) => {
     req.user.userId,
     req.user.role,
     req.body,
+    req.file,
   );
 
   sendResponse(res, {
@@ -99,45 +100,6 @@ const toggleFeatured = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-const uploadImage = catchAsync(async (req: Request, res: Response) => {
-  if (!req.file) {
-    return sendResponse(res, {
-      httpStatusCode: status.BAD_REQUEST,
-      success: false,
-      message: "Image file is required",
-    });
-  }
-
-  const result = await eventService.uploadImage(
-    req.params.id as string,
-    req.user.userId,
-    req.user.role,
-    req.file,
-  );
-
-  sendResponse(res, {
-    httpStatusCode: status.OK,
-    success: true,
-    message: "Event image uploaded successfully",
-    data: result,
-  });
-});
-
-const removeImage = catchAsync(async (req: Request, res: Response) => {
-  const result = await eventService.removeImage(
-    req.params.id as string,
-    req.user.userId,
-    req.user.role,
-  );
-
-  sendResponse(res, {
-    httpStatusCode: status.OK,
-    success: true,
-    message: "Event image removed successfully",
-    data: result,
-  });
-});
-
 export const eventController = {
   createEvent,
   getAllEvents,
@@ -146,6 +108,4 @@ export const eventController = {
   updateEvent,
   deleteEvent,
   toggleFeatured,
-  uploadImage,
-  removeImage,
 };

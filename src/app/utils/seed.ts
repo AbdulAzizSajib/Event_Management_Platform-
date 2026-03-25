@@ -5,10 +5,9 @@ import { prisma } from "../lib/prisma";
 
 export const seedSuperAdmin = async () => {
   try {
-    const isSuperAdminExist = await prisma.user.findFirst({
-      where: {
-        role: Role.SUPER_ADMIN,
-      },
+    // Check by email in admin table — most reliable
+    const isSuperAdminExist = await prisma.admin.findFirst({
+      where: { email: envVars.ADMIN_EMAIL },
     });
 
     if (isSuperAdminExist) {
@@ -16,52 +15,48 @@ export const seedSuperAdmin = async () => {
       return;
     }
 
-    const superAdminUser = await auth.api.signUpEmail({
-      body: {
-        email: envVars.SUPER_ADMIN_EMAIL,
-        password: envVars.SUPER_ADMIN_PASSWORD,
-        name: "Super Admin",
-        role: Role.ADMIN,
-        needPasswordChange: false,
-        rememberMe: false,
-      },
+    // Check if user exists but admin record missing (partial failure recovery)
+    let superAdminUserId: string;
+    const existingUser = await prisma.user.findUnique({
+      where: { email: envVars.ADMIN_EMAIL },
     });
+
+    if (existingUser) {
+      superAdminUserId = existingUser.id;
+    } else {
+      const superAdminUser = await auth.api.signUpEmail({
+        body: {
+          email: envVars.ADMIN_EMAIL,
+          password: envVars.ADMIN_PASSWORD,
+          name: "Admin",
+          role: Role.ADMIN,
+          needPasswordChange: false,
+          rememberMe: false,
+        },
+      });
+      superAdminUserId = superAdminUser.user.id;
+    }
 
     await prisma.$transaction(async (tx) => {
       await tx.user.update({
-        where: {
-          id: superAdminUser.user.id,
-        },
+        where: { id: superAdminUserId },
         data: {
+          role: Role.ADMIN,
           emailVerified: true,
         },
       });
 
       await tx.admin.create({
         data: {
-          userId: superAdminUser.user.id,
-          name: "Super Admin",
-          email: envVars.SUPER_ADMIN_EMAIL,
+          userId: superAdminUserId,
+          name: "Admin",
+          email: envVars.ADMIN_EMAIL,
         },
       });
     });
 
-    const superAdmin = await prisma.admin.findFirst({
-      where: {
-        email: envVars.SUPER_ADMIN_EMAIL,
-      },
-      include: {
-        user: true,
-      },
-    });
-
-    console.log("Super Admin Created ", superAdmin);
+    console.log("Admin Created successfully:", envVars.ADMIN_EMAIL);
   } catch (error) {
-    console.error("Error seeding super admin: ", error);
-    await prisma.user.delete({
-      where: {
-        email: envVars.SUPER_ADMIN_EMAIL,
-      },
-    });
+    console.error("Error seeding admin: ", error);
   }
 };
