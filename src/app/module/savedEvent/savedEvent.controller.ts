@@ -22,7 +22,7 @@ const saveEvent = catchAsync(async (req: Request, res: Response) => {
 const unsaveEvent = catchAsync(async (req: Request, res: Response) => {
   await savedEventService.unsaveEvent(
     req.user.userId,
-    req.params.eventId,
+    req.params.eventId as string,
   );
 
   sendResponse(res, {
@@ -50,7 +50,7 @@ const getMySavedEvents = catchAsync(async (req: Request, res: Response) => {
 const isEventSaved = catchAsync(async (req: Request, res: Response) => {
   const result = await savedEventService.isEventSaved(
     req.user.userId,
-    req.params.eventId,
+    req.params.eventId as string,
   );
 
   sendResponse(res, {

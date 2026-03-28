@@ -1,0 +1,25 @@
+export interface ICreateEvent {
+    title: string;
+    description: string;
+    date: string;
+    time: string;
+    venue?: string;
+    eventLink?: string;
+    type?: "PUBLIC" | "PRIVATE";
+    fee?: number;
+    maxAttendees?: number;
+    categoryId?: string;
+}
+export interface IUpdateEvent {
+    title?: string;
+    description?: string;
+    date?: string;
+    time?: string;
+    venue?: string | null;
+    eventLink?: string | null;
+    type?: "PUBLIC" | "PRIVATE";
+    fee?: number;
+    maxAttendees?: number | null;
+    categoryId?: string;
+}
+//# sourceMappingURL=event.interface.d.ts.map

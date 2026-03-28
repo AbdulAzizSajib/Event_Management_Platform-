@@ -1,0 +1,1 @@
+{"version":3,"file":"participant.interface.d.ts","sourceRoot":"","sources":["../../../../src/app/module/participant/participant.interface.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,UAAU;IACzB,OAAO,EAAE,MAAM,CAAC;CACjB;AAED,MAAM,WAAW,wBAAwB;IACvC,MAAM,EAAE,UAAU,GAAG,UAAU,GAAG,QAAQ,CAAC;CAC5C"}

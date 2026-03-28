@@ -33,7 +33,7 @@ export const initializeSocket = (httpServer: HttpServer): Server => {
       const sessionMatch = cookieStr.match(
         /better-auth\.session_token=([^;]+)/,
       );
-      if (sessionMatch) {
+      if (sessionMatch?.[1]) {
         const sessionToken = decodeURIComponent(sessionMatch[1]);
         const session = await prisma.session.findFirst({
           where: {
@@ -53,7 +53,7 @@ export const initializeSocket = (httpServer: HttpServer): Server => {
       const accessMatch = cookieStr.match(/accessToken=([^;]+)/);
       const accessToken =
         socket.handshake.auth?.token ||
-        (accessMatch ? decodeURIComponent(accessMatch[1]) : null);
+        (accessMatch?.[1] ? decodeURIComponent(accessMatch[1]) : null);
 
       if (accessToken) {
         const verified = jwtUtils.verifyToken(
