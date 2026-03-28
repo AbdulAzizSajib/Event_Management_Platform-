@@ -36,20 +36,15 @@ const loginUser = catchAsync(async (req: Request, res: Response) => {
     return;
   }
 
-  const { accessToken, refreshToken, token, ...rest } = result;
-  tokenUtils.setAccessTokenCookie(res, accessToken);
-  tokenUtils.setRefreshTokenCookie(res, refreshToken);
-  tokenUtils.setBetterAuthSessionCookie(res, token as string);
+  const loginData = result as { accessToken: string; refreshToken: string; token: string; [key: string]: unknown };
+  tokenUtils.setAccessTokenCookie(res, loginData.accessToken);
+  tokenUtils.setRefreshTokenCookie(res, loginData.refreshToken);
+  tokenUtils.setBetterAuthSessionCookie(res, loginData.token as string);
   sendResponse(res, {
     httpStatusCode: status.OK,
     success: true,
     message: "User logged in successfully",
-    data: {
-      token,
-      accessToken,
-      refreshToken,
-      ...rest,
-    },
+    data: loginData,
   });
 });
 
