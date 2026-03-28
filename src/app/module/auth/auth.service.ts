@@ -30,30 +30,15 @@ const registerUser = async (payload: IRegisterUserPayload) => {
     throw new AppError(status.BAD_REQUEST, "Failed to register user");
   }
 
-  const accessToken = tokenUtils.getAccessToken({
-    userId: data.user.id,
-    role: data.user.role,
-    name: data.user.name,
-    email: data.user.email,
-    status: data.user.status,
-    isDeleted: data.user.isDeleted,
-    emailVerified: data.user.emailVerified,
-  });
-
-  const refreshToken = tokenUtils.getRefreshToken({
-    userId: data.user.id,
-    role: data.user.role,
-    name: data.user.name,
-    email: data.user.email,
-    status: data.user.status,
-    isDeleted: data.user.isDeleted,
-    emailVerified: data.user.emailVerified,
-  });
-
+  // Don't generate tokens yet — user needs to verify email first
   return {
-    ...data,
-    accessToken,
-    refreshToken,
+    user: {
+      id: data.user.id,
+      name: data.user.name,
+      email: data.user.email,
+      emailVerified: data.user.emailVerified,
+    },
+    requiresEmailVerification: true,
   };
 };
 
@@ -72,10 +57,15 @@ const loginUser = async (payload: ILoginUserPayload) => {
   });
 
   if (!data.user.emailVerified) {
-    throw new AppError(
-      status.FORBIDDEN,
-      "Please verify your email before logging in. Check your inbox for the verification code.",
-    );
+    return {
+      user: {
+        id: data.user.id,
+        name: data.user.name,
+        email: data.user.email,
+        emailVerified: false,
+      },
+      requiresEmailVerification: true,
+    };
   }
 
   if (data.user.status === UserStatus.BLOCKED) {

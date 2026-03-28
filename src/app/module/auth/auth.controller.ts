@@ -13,26 +13,29 @@ const registerUser = catchAsync(async (req: Request, res: Response) => {
   const payload = req.body;
   const result = await authService.registerUser(payload);
 
-  const { accessToken, refreshToken, token, ...rest } = result;
-  tokenUtils.setAccessTokenCookie(res, accessToken);
-  tokenUtils.setRefreshTokenCookie(res, refreshToken);
-  tokenUtils.setBetterAuthSessionCookie(res, token as string);
-
   sendResponse(res, {
     httpStatusCode: status.CREATED,
     success: true,
-    message: "User registered successfully",
-    data: {
-      token,
-      accessToken,
-      refreshToken,
-      ...rest,
-    },
+    message:
+      "Registration successful. Please verify your email to continue.",
+    data: result,
   });
 });
 const loginUser = catchAsync(async (req: Request, res: Response) => {
   const payload = req.body;
   const result = await authService.loginUser(payload);
+
+  // Email not verified — don't set tokens, ask for verification
+  if ("requiresEmailVerification" in result && result.requiresEmailVerification) {
+    sendResponse(res, {
+      httpStatusCode: status.OK,
+      success: true,
+      message: "Email verification required. Please check your inbox.",
+      data: result,
+    });
+    return;
+  }
+
   const { accessToken, refreshToken, token, ...rest } = result;
   tokenUtils.setAccessTokenCookie(res, accessToken);
   tokenUtils.setRefreshTokenCookie(res, refreshToken);
