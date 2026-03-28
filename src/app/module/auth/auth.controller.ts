@@ -241,16 +241,22 @@ const googleLoginSuccess = catchAsync(async (req: Request, res: Response) => {
 
     const { accessToken, refreshToken } = result;
 
-    tokenUtils.setAccessTokenCookie(res, accessToken);
-    tokenUtils.setRefreshTokenCookie(res, refreshToken);
-    tokenUtils.setBetterAuthSessionCookie(res, sessionToken);
-
     const isValidRedirectPath =
       redirectPath.startsWith("/") && !redirectPath.startsWith("//");
     const finalRedirectPath = isValidRedirectPath ? redirectPath : "/dashboard";
 
-    console.log("Google Success - Redirecting to:", `${envVars.FRONTEND_URL}${finalRedirectPath}`);
-    return res.redirect(`${envVars.FRONTEND_URL}${finalRedirectPath}`);
+    // Send tokens via URL params — cross-domain cookies don't work reliably
+    const params = new URLSearchParams({
+      accessToken,
+      refreshToken,
+      sessionToken: sessionToken || "",
+      redirect: finalRedirectPath,
+    });
+
+    console.log("Google Success - Redirecting with tokens to frontend callback");
+    return res.redirect(
+      `${envVars.FRONTEND_URL}/auth/google/callback?${params.toString()}`,
+    );
   } catch (error) {
     console.error("Google Success - Error generating tokens:", error);
     return res.redirect(`${envVars.FRONTEND_URL}/login?error=token_generation_failed`);
