@@ -226,29 +226,35 @@ const googleLoginSuccess = catchAsync(async (req: Request, res: Response) => {
   });
 
   console.log("Google Success - Session found:", !!session);
+  console.log("Google Success - User:", session?.user?.email);
 
   if (!session) {
     return res.redirect(`${envVars.FRONTEND_URL}/login?error=no_session_found`);
   }
 
-  if (session && !session.user) {
+  if (!session.user) {
     return res.redirect(`${envVars.FRONTEND_URL}/login?error=no_user_found`);
   }
 
-  const result = await authService.googleLoginSuccess(session);
+  try {
+    const result = await authService.googleLoginSuccess(session);
 
-  const { accessToken, refreshToken } = result;
+    const { accessToken, refreshToken } = result;
 
-  tokenUtils.setAccessTokenCookie(res, accessToken);
-  tokenUtils.setRefreshTokenCookie(res, refreshToken);
-  // Re-set session token with consistent cookie settings
-  tokenUtils.setBetterAuthSessionCookie(res, sessionToken);
-  // ?redirect=//profile -> /profile
-  const isValidRedirectPath =
-    redirectPath.startsWith("/") && !redirectPath.startsWith("//");
-  const finalRedirectPath = isValidRedirectPath ? redirectPath : "/dashboard";
+    tokenUtils.setAccessTokenCookie(res, accessToken);
+    tokenUtils.setRefreshTokenCookie(res, refreshToken);
+    tokenUtils.setBetterAuthSessionCookie(res, sessionToken);
 
-  res.redirect(`${envVars.FRONTEND_URL}${finalRedirectPath}`);
+    const isValidRedirectPath =
+      redirectPath.startsWith("/") && !redirectPath.startsWith("//");
+    const finalRedirectPath = isValidRedirectPath ? redirectPath : "/dashboard";
+
+    console.log("Google Success - Redirecting to:", `${envVars.FRONTEND_URL}${finalRedirectPath}`);
+    return res.redirect(`${envVars.FRONTEND_URL}${finalRedirectPath}`);
+  } catch (error) {
+    console.error("Google Success - Error generating tokens:", error);
+    return res.redirect(`${envVars.FRONTEND_URL}/login?error=token_generation_failed`);
+  }
 });
 
 const handleOAuthError = catchAsync((req: Request, res: Response) => {
