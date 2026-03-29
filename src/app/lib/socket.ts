@@ -49,11 +49,12 @@ export const initializeSocket = (httpServer: HttpServer): Server => {
         }
       }
 
-      // --- Attempt 2: accessToken JWT (fallback for Google login users) ---
+      // --- Attempt 2: accessToken JWT (cookie, auth header, or query param) ---
       const accessMatch = cookieStr.match(/accessToken=([^;]+)/);
       const accessToken =
         socket.handshake.auth?.token ||
-        (accessMatch?.[1] ? decodeURIComponent(accessMatch[1]) : null);
+        (accessMatch?.[1] ? decodeURIComponent(accessMatch[1]) : null) ||
+        (socket.handshake.query?.token as string) || null;
 
       if (accessToken) {
         const verified = jwtUtils.verifyToken(
